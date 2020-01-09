@@ -1,0 +1,71 @@
+version: '3.7'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    depends_on:
+      - mysql
+    environment:
+      - PHP_DATE_TIMEZONE=${PHP_DATE_TIMEZONE:-Europe/Warsaw}
+    volumes:
+      - .:/srv/app:rw,cached
+      # if you develop on Linux, you may use a bind-mounted host directory instead
+      # - ./var:/srv/app/var:rw
+      - ./public:/srv/app/public:rw,delegated
+    links:
+      - mysql
+
+  nodejs:
+    build:
+      context: .
+      dockerfile: ./docker/nodejs/Dockerfile
+    depends_on:
+      - php
+    environment:
+      - PHP_HOST=php
+      - PHP_PORT=9000
+      - NODE_ENV=dev
+    volumes:
+      - .:/srv/app:rw,cached
+      - ./public:/srv/app/public:rw,delegated
+
+  mysql:
+    image: percona:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=symfony
+      - MYSQL_USER=symfony
+      - MYSQL_PASSWORD=secret
+    volumes:
+      - mysql-data:/var/lib/mysql:rw
+      # you may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/mysql/data:/var/lib/mysql:rw,delegated
+    ports:
+      - "33060:3306"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    depends_on:
+      - php
+      - nodejs
+    volumes:
+      - ./public:/srv/app/public:ro
+    ports:
+      - "81:80"
+
+  mailhog:
+    # do not use in production!
+    image: mailhog/mailhog:latest
+    environment:
+      - MH_STORAGE=maildir
+    # volumes:
+    #   - ./docker/mailhog/maildir:/maildir:rw,delegated
+    ports:
+      - "8025:8025"
+
+volumes:
+  mysql-data:
