@@ -69,6 +69,10 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+    .copyFiles({
+        from: './node_modules/bootstrap/dist/',
+        to: 'bootstrap/[name].[ext]'
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

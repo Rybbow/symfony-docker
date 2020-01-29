@@ -9,3 +9,12 @@
 8. Dodaj własny filtr twigowy, który policzy liczbę słów w treści artykułu.
 9. Zainstaluj bundle "babdev/pagerfanta-bundle" i zaimplementuj stronnicowanie artykułów w widoku listy.
 10. Dodaj makro i użyj w szablonach listy i widoku do zaprezentowania wstępu do artykułu (np pierwsze 144 znaki).
+
+`docker exec -it symfony-docker_php_1 sh`
+`docker exec -it symfony-docker_nodejs_1 sh`
+
+ad 1.
+`php.$ composer req symfony/webpack-encore-bundle`
+`nodejs.$ yarn add bootstrap`
+`nodejs.$ yarn install`
+`nodejs.$ yarn encore dev`
