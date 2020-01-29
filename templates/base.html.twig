@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="{{ asset('build/bootstrap/bootstrap.css') }}">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/bootstrap/bootstrap.css') }}">
+        {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
