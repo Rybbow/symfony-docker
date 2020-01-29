@@ -25,6 +25,7 @@ class ArticlesController extends AbstractController
             $art .= '<li>'.$a." $redirectLink</li>";
         }
         $art .= '</ul>';
+        $art .= '<br /><a href="'.$this->generateUrl('about').'">O nas</a>';
 
 
         return new Response($art, 200);
