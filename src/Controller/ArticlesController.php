@@ -19,15 +19,8 @@ class ArticlesController extends AbstractController
             'artykuł3'
         ];
 
-        $art = '<ul>';
-        foreach ($articles as $a){
-            $redirectLink = '<a href="'.$this->generateUrl('article', ['name' => $a]).'">show</a>';
-            $art .= '<li>'.$a." $redirectLink</li>";
-        }
-        $art .= '</ul>';
-        $art .= '<br /><a href="'.$this->generateUrl('about').'">O nas</a>';
-
-
-        return new Response($art, 200);
+        return $this->render('articles/index.html.twig', [
+            'articles' => $articles,
+        ]);
     }
 }
