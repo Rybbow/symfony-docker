@@ -14,6 +14,10 @@ class ArticleController extends AbstractController
      */
     public function index($name)
     {
+        if ($name == '404')
+//            throw $this->createNotFoundException();
+            return new Response('404 not found !',Response::HTTP_NOT_FOUND);
+
         $backLink = "<a href='".$this->generateUrl('articles')."'>Back to list</a>";
         return new Response('<html><body><h1>'.$name.'</h1><p>'.$backLink.'</p></body></html>');
     }
