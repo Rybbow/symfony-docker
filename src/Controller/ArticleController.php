@@ -21,6 +21,7 @@ class ArticleController extends AbstractController
             return new Response('404 not found !',Response::HTTP_NOT_FOUND);
 
         if ($name == 'o-nas') {
+//            return $this->forward(AboutController::class.'::index');
             return $this->redirectToRoute('about');
         }
 
