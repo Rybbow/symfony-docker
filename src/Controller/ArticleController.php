@@ -31,8 +31,9 @@ class ArticleController extends AbstractController
 
         $session->set('counter_' . $name, ++$counter);
 
-
-        $backLink = "<a href='".$this->generateUrl('articles')."'>Back to list</a>";
-        return new Response('<html><body><h1>'.$name.'</h1><p>'.$backLink.'</p><p>Wyświetlono: ' . $counter . '</p></body></html>');
+        return $this->render('article/index.html.twig', [
+            'controller_name' => $name,
+            'counter' => $counter,
+        ]);
     }
 }
