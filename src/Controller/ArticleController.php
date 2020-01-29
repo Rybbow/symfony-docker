@@ -31,6 +31,10 @@ class ArticleController extends AbstractController
 
         $session->set('counter_' . $name, ++$counter);
 
+        if($counter == 5){
+            $this->addFlash('notice', 'Wchodzisz poraz 5.. nie rób tego.');
+        }
+
         return $this->render('article/index.html.twig', [
             'controller_name' => $name,
             'counter' => $counter,

@@ -8,6 +8,11 @@
         {% endblock %}
     </head>
     <body>
+        {% for message in app.flashes('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('build/bootstrap/bootstrap.js') }}"></script>
