@@ -21,7 +21,8 @@ class ArticlesController extends AbstractController
 
         $art = '<ul>';
         foreach ($articles as $a){
-            $art .= '<li>'.$a.'</li>';
+            $redirectLink = '<a href="'.$this->generateUrl('article', ['name' => $a]).'">show</a>';
+            $art .= '<li>'.$a." $redirectLink</li>";
         }
         $art .= '</ul>';
 
