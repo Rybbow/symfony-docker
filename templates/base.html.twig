@@ -14,6 +14,7 @@
             </div>
         {% endfor %}
         {% block body %}{% endblock %}
+        {{ app.request.uri }}
         {% block javascripts %}
             <script src="{{ asset('build/bootstrap/bootstrap.js') }}"></script>
         {% endblock %}
