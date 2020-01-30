@@ -14,6 +14,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Form\ArticleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,15 +30,31 @@ class UpdateArticleController extends AbstractController
      * @Route("/update/article/{slug}", name="update_article")
      */
 
-    public function update(Article $article)
+    public function update(Article $article, \Symfony\Component\HttpFoundation\Request $request)
     {
-        $manager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(ArticleType::class, $article);
 
-        $article->setTitle('New article name!');
-        $manager->flush();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
 
-        return $this->redirectToRoute('article', [
-            'slug' => $article->getSlug(),
-        ]);
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'article',
+                [
+                    'slug' => $form->getData()->getSlug(),
+                ]
+            );
+        }
+
+        return $this->render(
+            'article/add.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
+
+
     }
 }

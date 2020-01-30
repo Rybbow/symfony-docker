@@ -37,4 +37,5 @@ class ArticlesController extends AbstractController
             'my_pager' => $pager
         ]);
     }
+
 }
