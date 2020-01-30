@@ -14,7 +14,9 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Form\ArticleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,19 +30,37 @@ class AddArticleController extends AbstractController
     /**
      * @Route("article/add", name="addArticle")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $manager = $this->getDoctrine()->getManager();
-        $article = new Article();
-        $i = rand(0, 10);
-        $article->setTitle('title '.$i);
-        $article->setContent('content '.$i);
+//        $manager = $this->getDoctrine()->getManager();
+//        $article = new Article();
+//        $i = rand(0, 10);
+//        $article->setTitle('title '.$i);
+//        $article->setContent('content '.$i);
+//
+//        $manager->persist($article);
+//        $manager->flush();
+//
+//        return $this->redirectToRoute('article',[
+//            'slug' => $article->getSlug()
+//        ]);
 
-        $manager->persist($article);
+        $form = $this->createForm(ArticleType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+
+            $manager->persist($form->getData());
         $manager->flush();
 
         return $this->redirectToRoute('article',[
-            'slug' => $article->getSlug()
+            'slug' => $form->getData()->getSlug()
+        ]);
+        }
+
+        return $this->render('article/add.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

@@ -22,7 +22,7 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(255)
+     * @Assert\Length(max=255)
      * @Assert\Type("string")
      */
     private $title;
