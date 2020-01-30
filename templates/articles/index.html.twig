@@ -10,9 +10,9 @@
     <h1>Hello! ✅</h1>
 
     <ul>
-        {% for item in my_pager.currentPageResults %}
-            <li><a href="{{ path('article', {name: item}) }}">{{ item }}</a>
-                {{ macro.short(item) }}</li>
+        {% for article in my_pager %}
+            <li><a href="{{ path('article', {name: article.title }) }}">{{ article.title }}</a>
+                {{ macro.short(article.content) }}</li>
 
         {% endfor %}
     </ul>
