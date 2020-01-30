@@ -11,3 +11,10 @@
 10. Dodaj filtrowanie listy artykułów po datach (od-do) podawanych jako zwykły query string.
 11. Wypisz przy każdym artykule na liście ilość komentujących (tzn. unikalne adresy email w komentarzach).
 12. Zoptymalizuj wyświetlanie ilości komentujących (patrz poprzedni punkt) poprzez dodanie pola do modelu artykułu aktualizowanego przez doctrine event listener.
+
+do generowania:
+`$ bin/console make:migration`
+lub
+`$ bin/console doctrine:migrations:diff`
+do migrowania:
+`$ bin/console doctrine:migrations:migrate`
