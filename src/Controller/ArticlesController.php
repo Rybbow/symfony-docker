@@ -19,10 +19,13 @@ class ArticlesController extends AbstractController
      */
     public function index(Request $request)
     {
+        $dateFrom = $request->query->get('from', '1990-01-01');
+        $dateTo = $request->query->get('to', '2990-01-01');
 
-        $articles = $this->getDoctrine()->getRepository(Article::class)->getArticles();
+        $articles = $this->getDoctrine()->getRepository(Article::class)->getArticles($dateFrom, $dateTo);
 
         $page = $request->query->get('page', 1);
+
 
         $adapter = new DoctrineORMAdapter($articles);
         $pager = new Pagerfanta($adapter);

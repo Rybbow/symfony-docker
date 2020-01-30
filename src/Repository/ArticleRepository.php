@@ -48,9 +48,21 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
-    public function getArticles()
+    public function getArticles($dateFrom = null, $dateTo = null)
     {
-        return $this->createQueryBuilder('a');
+        $query = $this->createQueryBuilder('a');
+
+        if(!is_null($dateFrom) && !is_null($dateTo)){
+            $dateFrom = new \DateTime($dateFrom);
+            $dateTo = new \DateTime($dateTo);
+            $query
+                ->andWhere('a.add_date between :from and :to')
+                ->setParameter('from', $dateFrom)
+                ->setParameter('to', $dateTo);
+        }
+        return $query;
     }
+
+
 
 }
