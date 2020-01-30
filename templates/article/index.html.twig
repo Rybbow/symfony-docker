@@ -13,5 +13,7 @@
 
     <p>counter: {{ counter }}</p>
     <p><a href="{{ path('articles') }}">Articles</a></p>
+
+    {{ controller_name|stringLength }}
 </div>
 {% endblock %}
