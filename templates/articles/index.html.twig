@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
-
+{% import "/components/macros.html.twig" as macro %}
 {% block title %}Hello ArticlesController!{% endblock %}
+
+
 
 {% block body %}
 
@@ -9,7 +11,9 @@
 
     <ul>
         {% for item in my_pager.currentPageResults %}
-            <li><a href="{{ path('article', {name: item}) }}">{{ item }}</a></li>
+            <li><a href="{{ path('article', {name: item}) }}">{{ item }}</a>
+                {{ macro.short(item) }}</li>
+
         {% endfor %}
     </ul>
 
