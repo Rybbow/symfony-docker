@@ -17,7 +17,7 @@
 
     <ul>
         {% for comment in article.comments %}
-            <li>{{ comment.value }} by {{ comment.email  }}</li>
+            <li>{{ comment.value }} by {{ comment.email  }} <a href="{{ path('delete_comment', {id:comment.id}) }}">Usuń</a></li>
         {% endfor %}
     </ul>
     <p>counter: {{ counter }}</p>
