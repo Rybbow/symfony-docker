@@ -15,6 +15,11 @@
         {{ article.content }}
     </div>
 
+    <ul>
+        {% for comment in article.comments %}
+            <li>{{ comment.value }} by {{ comment.email  }}</li>
+        {% endfor %}
+    </ul>
     <p>counter: {{ counter }}</p>
     <p><a href="{{ path('articles') }}">Articles</a></p>
 
