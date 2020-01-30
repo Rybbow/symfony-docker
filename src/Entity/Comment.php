@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -20,16 +21,23 @@ class Comment
      * @ORM\ManyToOne(
      *     targetEntity=Article::class,
      *     inversedBy="comments")
+     * @Assert\NotNull()
+     * @Assert\Type(Article::class)
      */
     private $article;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=1024)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=1024)
      */
     private $value;
 
