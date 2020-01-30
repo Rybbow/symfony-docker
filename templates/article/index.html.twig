@@ -9,11 +9,15 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>{{ controller_name }}! ✅</h1>
+    <h1>{{ article.title }}! ✅</h1>
+
+    <div>
+        {{ article.content }}
+    </div>
 
     <p>counter: {{ counter }}</p>
     <p><a href="{{ path('articles') }}">Articles</a></p>
 
-    {{ controller_name|stringLength }}
+    {{ article.title|stringLength }}
 </div>
 {% endblock %}

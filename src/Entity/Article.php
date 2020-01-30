@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -33,6 +34,12 @@ class Article
     private $add_date;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug")
+     */
+    private $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
      */
     private $comments;
@@ -44,6 +51,14 @@ class Article
     {
         $this->comments = new ArrayCollection();
         $this->add_date = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
 

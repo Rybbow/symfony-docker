@@ -11,7 +11,7 @@
 
     <ul>
         {% for article in my_pager %}
-            <li><a href="{{ path('article', {name: article.title }) }}">{{ article.title }}</a>
+            <li><a href="{{ path('article', {slug: article.slug }) }}">{{ article.title }}</a>
                 {{ macro.short(article.content) }}</li>
 
         {% endfor %}
