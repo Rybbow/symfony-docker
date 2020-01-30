@@ -8,10 +8,15 @@
     <h1>Hello! ✅</h1>
 
     <ul>
-        {% for item in articles %}
+        {% for item in my_pager.currentPageResults %}
             <li><a href="{{ path('article', {name: item}) }}">{{ item }}</a></li>
         {% endfor %}
     </ul>
+
+    <div class="pagerfanta">
+        {{ pagerfanta(my_pager) }}
+    </div>
+
     <p><a href="{{ path('about') }}">O nas</a></p>
 </div>
 {% endblock %}
