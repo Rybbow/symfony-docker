@@ -18,3 +18,8 @@ lub
 `$ bin/console doctrine:migrations:diff`
 do migrowania:
 `$ bin/console doctrine:migrations:migrate`
+
+`$ bin/console doctrine:fixtures:load`
+
+uprawnienia docker/host:
+`$ chown -R 1000:1000 ./`

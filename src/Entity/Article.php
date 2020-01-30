@@ -43,6 +43,7 @@ class Article
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->add_date = new \DateTime();
     }
 
 
