@@ -14,6 +14,12 @@ class AppExtension extends AbstractExtension
      * @var ArticleRepository
      */
     private $repository;
+    private $env;
+
+    public function __construct($env)
+    {
+        $this->env = $env;
+    }
 
     /**
      * @param ArticleRepository $repository
@@ -43,7 +49,7 @@ class AppExtension extends AbstractExtension
 
     public function stringLength($value): int
     {
-//        dump($this->repository);
+        dump($this->env);
         return strlen($value);
     }
 }
