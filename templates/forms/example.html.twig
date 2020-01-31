@@ -1,0 +1,20 @@
+{% use "bootstrap_4_layout.html.twig" %}
+{%- block text_widget -%}
+    {% set attr = attr|merge({rows: '10'}) %}
+    {{- block('textarea_widget') -}}
+{%- endblock text_widget -%}
+
+{% block _article_content_label %}
+    <label>Nadpisana labelka</label>
+{% endblock _article_content_label %}
+{#
+{% block form_widget_simple -%}
+    {% if type is not defined or type != 'hidden' %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ (type|default('') == 'file' ? ' custom-file-input' : ' form-control'))|trim}) -%}
+    {% endif %}
+    {%- if type is defined and (type == 'range' or type == 'color') %}
+        {{- parent() -}}
+    {% endif %}
+
+{%- endblock form_widget_simple %}
+#}

@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'forms/example.html.twig' %}
+
 {% block title %}Hello ArticleController!{% endblock %}
 
 {% block body %}
@@ -9,6 +11,7 @@
     </style>
 
     <div class="example-wrapper">
+
         {{ form_start(form) }}
         {{ form_row(form) }}
         <input type="submit"/>
