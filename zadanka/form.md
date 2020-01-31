@@ -11,3 +11,6 @@ X. Ustaw form theme na bootstrapie ('bootstrap_4_layout.html.twig'). Nadpisz ren
 9. Napisz walidator nie pozwalający dodać komentarza do artykułu 
 10. Dodaj formularz kontaktowy, który wyśle maila do obsługi (.env) z wpisaną treścią.
 11. Dodaj do formularza dodawania komentarza dynamiczne pole niezwiązane z obiektem komentarza, które będzie się pokazywać tylko jeśli artukuł nie ma jeszcze komentarzy, którego nie będzie się dało edytować i które będzie polem typu text z treścią "First comment!!!1!".
+
+
+https://github.com/ninsuo/symfony-collection
