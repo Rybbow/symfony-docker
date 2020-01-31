@@ -53,8 +53,6 @@ class ArticleRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('a');
 
         if(!is_null($dateFrom) && !is_null($dateTo)){
-            $dateFrom = new \DateTime($dateFrom);
-            $dateTo = new \DateTime($dateTo);
             $query
                 ->andWhere('a.add_date between :from and :to')
                 ->setParameter('from', $dateFrom)

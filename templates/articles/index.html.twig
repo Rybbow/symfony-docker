@@ -9,6 +9,11 @@
 <div class="example-wrapper">
     <h1>Hello! ✅</h1>
 
+    {{ form_start(filter_form, {'method': 'get'}) }}
+    {{ form_row(filter_form) }}
+    <input type="submit"/>
+    {{ form_end(filter_form) }}
+
     <ul>
         {% for article in my_pager %}
             <li><a href="{{ path('article', {slug: article.slug }) }}">{{ article.title }} ({{ article.getAddDate().format('y-m-d H:i:s') }})</a> <a href="{{ path('update_article', {slug: article.slug}) }}">Zmien</a>
