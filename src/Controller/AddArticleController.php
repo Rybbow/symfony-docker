@@ -52,12 +52,12 @@ class AddArticleController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->articleService->add($form->getData());
+            $article = $this->articleService->add($form->getData());
 
             return $this->redirectToRoute(
                 'article',
                 [
-                    'slug' => $form->getData()->getSlug(),
+                    'slug' => $article->getSlug(),
                 ]
             );
         }

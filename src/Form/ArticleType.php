@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\DTO\CreateArticleDTO;
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -24,7 +25,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => CreateArticleDTO::class,
         ]);
     }
 }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 
+use App\DTO\CreateArticleDTO;
 use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -36,9 +37,14 @@ class ArticleService
         $this->doctrineManager = $doctrineManager;
     }
 
-    public function add(Article $article)
+    public function add(CreateArticleDTO $dto): Article
     {
+        $article = new Article();
+        $article->setTitle($dto->title);
+        $article->setContent($dto->content);
         $this->doctrineManager->persist($article);
         $this->doctrineManager->flush();
+
+        return $article;
     }
 }
