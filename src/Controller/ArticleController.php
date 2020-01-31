@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,9 +38,14 @@ class ArticleController extends AbstractController
             $this->addFlash('notice', 'Wchodzisz poraz 5.. nie rób tego.');
         }
 
+        $comment = new Comment();
+        $comment->setArticle($article);
+        $form = $this->createForm(CommentType::class,$comment, ['action' => $this->generateUrl('addComment', ['slug' => $article->getSlug()])]);
+
         return $this->render('article/index.html.twig', [
             'article' => $article,
             'counter' => $counter,
+            'form' => $form->createView(),
         ]);
     }
 }

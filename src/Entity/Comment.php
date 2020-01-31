@@ -30,7 +30,7 @@ class Comment
      * @ORM\Column(type="string", length=255)
      * @Assert\Email()
      * @Assert\NotBlank()
-     * @Assert\Length(max=255)
+     * @Assert\Length(min=55, max=255)
      */
     private $email;
 
