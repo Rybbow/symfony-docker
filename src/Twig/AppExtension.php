@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Repository\ArticleRepository;
+use App\Repository\RepositoryInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -17,7 +18,7 @@ class AppExtension extends AbstractExtension
     /**
      * @param ArticleRepository $repository
      */
-    public function setRepository(ArticleRepository $repository): void
+    public function setRepository(RepositoryInterface $repository): void
     {
         $this->repository = $repository;
     }
@@ -42,6 +43,7 @@ class AppExtension extends AbstractExtension
 
     public function stringLength($value): int
     {
+//        dump($this->repository);
         return strlen($value);
     }
 }

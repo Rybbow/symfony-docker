@@ -32,4 +32,7 @@ services:
 
     App\Twig\AppExtension:
         calls:
-            - ['setRepository', ['@App\Repository\ArticleRepository']]
+            - ['setRepository', ['@App\Repository\RepositoryInterface']]
+
+    App\Repository\RepositoryInterface:
+        alias: App\Repository\ArticleRepository
