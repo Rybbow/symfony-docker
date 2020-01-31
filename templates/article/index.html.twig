@@ -28,9 +28,11 @@
 
     {{ article.title|stringLength }}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit">
-    {{ form_end(form) }}
+    {% if is_granted('COMMENT_ADD') %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit">
+        {{ form_end(form) }}
+    {% endif %}
 </div>
 {% endblock %}

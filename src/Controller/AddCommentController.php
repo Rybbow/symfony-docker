@@ -16,6 +16,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\CommentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -31,6 +32,7 @@ class AddCommentController extends AbstractController
 {
     /**
      * @Route("comment/add/{slug}", name="addComment")
+     * @Security("is_granted('COMMENT_ADD')")
      */
     public function index(Article $article, Request $request): Response
     {
