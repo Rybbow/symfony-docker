@@ -17,7 +17,10 @@
 
     <ul>
         {% for comment in article.comments %}
-            <li>{{ comment.value }} by {{ comment.email  }} <a href="{{ path('delete_comment', {id:comment.id}) }}">Usuń</a></li>
+            <li>{{ comment.value }} by {{ comment.email  }}
+                <a href="{{ path('update_comment', {id:comment.id}) }}">Edytuj</a>
+                <a href="{{ path('delete_comment', {id:comment.id}) }}">Usuń</a>
+            </li>
         {% endfor %}
     </ul>
     <p>counter: {{ counter }}</p>

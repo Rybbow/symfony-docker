@@ -126,4 +126,9 @@ class Article
         $this->comments = $comments;
     }
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
 }
