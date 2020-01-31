@@ -2,12 +2,27 @@
 
 namespace App\Twig;
 
+use App\Repository\ArticleRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
+    /**
+     * @var ArticleRepository
+     */
+    private $repository;
+
+    /**
+     * @param ArticleRepository $repository
+     */
+    public function setRepository(ArticleRepository $repository): void
+    {
+        $this->repository = $repository;
+    }
+
+
     public function getFilters(): array
     {
         return [

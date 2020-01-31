@@ -29,3 +29,7 @@ services:
     App\EventSubscriber\PlainPasswordSubscriber:
         tags:
             - { name: 'doctrine.event_subscriber' }
+
+    App\Twig\AppExtension:
+        calls:
+            - ['setRepository', ['@App\Repository\ArticleRepository']]
