@@ -1,0 +1,5 @@
+app:
+    article:
+        title: "Oglądasz artykuł %articleTitle%"
+        form:
+            title: "Tytuł (pl)"

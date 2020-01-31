@@ -28,7 +28,10 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/articles", name="articles")
+     * @Route({
+     *    "pl": "/{_locale}/artykuly",
+     *    "en": "/{_locale}/articles"
+     * }, name="articles")
      */
     public function index(Request $request)
     {

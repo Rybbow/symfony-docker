@@ -42,7 +42,7 @@ class AddArticleController extends AbstractController
     }
 
     /**
-     * @Route("article/add", name="addArticle")
+     * @Route("/{_locale}/article/add", name="addArticle")
      */
     public function index(Request $request): Response
     {

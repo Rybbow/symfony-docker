@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>{{ article.title }}! ✅</h1>
+    <h1>{{ 'app.article.title'|trans({'%articleTitle%': article.title}) }}! ✅</h1>
 
     <div>
         {{ article.content }}

@@ -15,7 +15,7 @@ class ArticleController extends AbstractController
 {
 
     /**
-     * @Route("/article/{slug}", name="article")
+     * @Route("/{_locale}/article/{slug}", name="article")
      */
     public function index(Article $article, Request $request)
     {
