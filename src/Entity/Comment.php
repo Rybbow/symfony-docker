@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Validator\Profanity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -38,6 +39,7 @@ class Comment
      * @ORM\Column(type="string", length=1024)
      * @Assert\NotBlank()
      * @Assert\Length(max=1024)
+     * @Profanity()
      */
     private $value;
 
