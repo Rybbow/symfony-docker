@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -33,6 +34,13 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @var string The not hashed password
+     *
+     * @Assert\NotBlank()
+     */
+    private $plainPassword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,6 +55,23 @@ class User implements UserInterface
     {
         $this->email = $email;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
         return $this;
     }
 

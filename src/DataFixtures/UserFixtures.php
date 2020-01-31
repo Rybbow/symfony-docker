@@ -14,7 +14,7 @@ class UserFixtures extends Fixture
         // $manager->persist($product);
 
         $user = new User();
-        $user->setPassword('$argon2id$v=19$m=65536,t=4,p=1$N5iQGNAdcBJ8fl4Frm/4Rg$cETKwHF8MbrqDAJQjvMvmMlfQf0YXdptTXCPhjzSGEo');
+        $user->setPlainPassword('654321');
         $user->setEmail('example@example.com');
 
         $manager->persist($user);
