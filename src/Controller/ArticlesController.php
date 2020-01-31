@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\DateFilterType;
+use App\Repository\RepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -15,6 +16,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticlesController extends AbstractController
 {
+
+    /**
+     * @var RepositoryInterface $repository
+     */
+    private $repository;
+
+    public function __construct(RepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @Route("/articles", name="articles")
      */
@@ -30,9 +42,9 @@ class ArticlesController extends AbstractController
             /** @var \DateTime $from */
             $from = $form->getData()['from'];
             $to = $form->getData()['to'];
-            $articles = $this->getDoctrine()->getRepository(Article::class)->getArticles($from, $to);
+            $articles = $this->repository->getArticles($from, $to);
         } else {
-            $articles = $this->getDoctrine()->getRepository(Article::class)->getArticles();
+            $articles = $this->repository->getArticles();
         }
 
         $page = $request->query->get('page', 1);
