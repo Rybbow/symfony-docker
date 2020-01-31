@@ -14,6 +14,7 @@ namespace App\Controller;
 
 
 use App\Form\ArticleType;
+use App\Service\ArticleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AddArticleController extends AbstractController
 {
+    /** @var ArticleService */
+    private $articleService;
+
+    /**
+     * AddArticleController constructor.
+     *
+     * @param ArticleService $articleService
+     */
+    public function __construct(ArticleService $articleService)
+    {
+        $this->articleService = $articleService;
+    }
+
     /**
      * @Route("article/add", name="addArticle")
      */
@@ -37,10 +51,8 @@ class AddArticleController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $this->getDoctrine()->getManager();
 
-            $manager->persist($form->getData());
-            $manager->flush();
+            $this->articleService->add($form->getData());
 
             return $this->redirectToRoute(
                 'article',
